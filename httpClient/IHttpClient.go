@@ -5,6 +5,7 @@ type IHttpClient interface {
 }
 
 type MockHttpClient struct {
+	ErrortoReturn error
 	//The string that will be returned from a request.
 	MockResponseBody string
 	//'GET' request url invocations
@@ -16,7 +17,7 @@ func (client *MockHttpClient) Get(url string) (string, error) {
 	client.initializeNilArrays()
 
 	client.GetUrlInvocations = append(client.GetUrlInvocations, url)
-	return client.MockResponseBody, nil
+	return client.MockResponseBody, client.ErrortoReturn
 }
 
 func (client *MockHttpClient) initializeNilArrays() {
