@@ -1,4 +1,4 @@
-package persistClient
+package persistclient
 
 import "github.com/DJost494731/PersistClient/httpclient"
 

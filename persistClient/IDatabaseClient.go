@@ -1,4 +1,4 @@
-package persistClient
+package persistclient
 
 type IDatabaseClient interface {
 	GetData(folder string, file string) string

@@ -1,4 +1,4 @@
-package persistClient
+package persistclient
 
 import (
 	"testing"
