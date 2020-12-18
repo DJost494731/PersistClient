@@ -3,13 +3,13 @@ package persistClient
 import (
 	"testing"
 
-	"github.com/DJost494731/PersistClient/httpClient"
+	"github.com/DJost494731/PersistClient/httpclient"
 )
 
 
 func Test_PersistClientReturnsHttpResponseBody(t *testing.T) {
 	want := "foobar"
-	httpClient := &httpClient.MockHttpClient{MockResponseBody: want}
+	httpClient := &httpclient.MockHttpClient{MockResponseBody: want}
 	persistClient := PersistClient{HttpClient: httpClient}
 	
 	result := persistClient.GetData("stub folder", "stub file")
@@ -23,7 +23,7 @@ func Test_PersistClientReturnsHttpResponseBody(t *testing.T) {
 func Test_PersistClientCallsHttpClientWithFormattedUrl(t *testing.T) {
 	expectedUrl := "http://www.foo.com/stub folder/stub file"
 	persistUrlPrefix := "http://www.foo.com"
-	mockHttpClient := &httpClient.MockHttpClient{}
+	mockHttpClient := &httpclient.MockHttpClient{}
 	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrlPrefix: persistUrlPrefix}
 	
 	persistClient.GetData("stub folder", "stub file")

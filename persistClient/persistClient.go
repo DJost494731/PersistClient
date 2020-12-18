@@ -1,10 +1,10 @@
 package persistClient
 
-import "github.com/DJost494731/PersistClient/httpClient"
+import "github.com/DJost494731/PersistClient/httpclient"
 
 
 type PersistClient struct {
-	HttpClient httpClient.IHttpClient
+	HttpClient httpclient.IHttpClient
 	//The url your prefix server is hosted at, without the folder or file path. Ex: "http://www.foo.com"
 	PersistUrlPrefix string
 }

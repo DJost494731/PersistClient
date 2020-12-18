@@ -1,4 +1,4 @@
-package httpClient
+package httpclient
 
 type IHttpClient interface {
 	Get(url string) string
