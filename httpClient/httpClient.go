@@ -6,8 +6,11 @@ import (
 	"net/http"
 )
 
+type HttpClient struct {
+}
+
 //Get makes a get request at the given route and returns the response body or error
-func Get(url string) (string, error) {
+func (client HttpClient) Get(url string) (string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
