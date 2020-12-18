@@ -1,7 +1,7 @@
 package httpclient
 
 type IHttpClient interface {
-	Get(url string) string
+	Get(url string) (string, error)
 }
 
 type MockHttpClient struct {
@@ -12,11 +12,11 @@ type MockHttpClient struct {
 }
 
 //Returns MockHttpClient's response body
-func (client *MockHttpClient) Get(url string) string {
+func (client *MockHttpClient) Get(url string) (string, error) {
 	client.initializeNilArrays()
 
 	client.GetUrlInvocations = append(client.GetUrlInvocations, url)
-	return client.MockResponseBody
+	return client.MockResponseBody, nil
 }
 
 func (client *MockHttpClient) initializeNilArrays() {

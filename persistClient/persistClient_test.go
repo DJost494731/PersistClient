@@ -12,7 +12,7 @@ func Test_PersistClientReturnsHttpResponseBody(t *testing.T) {
 	httpClient := &httpclient.MockHttpClient{MockResponseBody: want}
 	persistClient := PersistClient{HttpClient: httpClient}
 	
-	result := persistClient.GetData("stub folder", "stub file")
+	result, _ := persistClient.GetData("stub folder", "stub file")
 	
 
 	if result != want { 

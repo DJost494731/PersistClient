@@ -9,6 +9,6 @@ type PersistClient struct {
 	PersistUrlPrefix string
 }
 
-func (p PersistClient) GetData(folder string, file string) string {
+func (p PersistClient) GetData(folder string, file string) (string, error) {
 	return p.HttpClient.Get(p.PersistUrlPrefix + "/" + folder + "/" + file)
 }
