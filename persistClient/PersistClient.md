@@ -22,7 +22,9 @@ For example:
 ```golang
 want := "result" 
 
-mockDbClient := persistclient.MockDatabaseClient{
+var mockDbClient IDatabaseClient
+
+mockDbClient = persistclient.MockDatabaseClient{
   DataToReturn: want
 }
 
