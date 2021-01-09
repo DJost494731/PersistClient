@@ -22,9 +22,9 @@ func Test_PersistClientReturnsHttpResponseBody(t *testing.T) {
 
 func Test_PersistClientCallsHttpClientWithFormattedUrl(t *testing.T) {
 	expectedUrl := "http://www.foo.com/stub folder/stub file"
-	persistUrlPrefix := "http://www.foo.com"
+	persistUrl := "http://www.foo.com"
 	mockHttpClient := &httpclient.MockHttpClient{}
-	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrlPrefix: persistUrlPrefix}
+	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrl: persistUrl}
 	
 	persistClient.GetData("stub folder", "stub file")
 	
@@ -37,7 +37,7 @@ func Test_PersistClientCallsHttpClientWithFormattedUrl(t *testing.T) {
 
 func Test_PersistClientReturnsRecordNotFoundErrorWithHttp404(t *testing.T) {
 	mockHttpClient := &httpclient.MockHttpClient{StatusCode: 404}
-	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrlPrefix: ""}
+	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrl: ""}
 	
 	_, err := persistClient.GetData("stub folder", "stub file")
 	switch err.(type) {
