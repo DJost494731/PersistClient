@@ -1,5 +1,7 @@
 package persistclient
 
+import "fmt"
+
 type IDatabaseClient interface {
 	GetData(folder string, file string) (string, error)
 }
@@ -9,6 +11,15 @@ type MockDatabaseClient struct {
 	errorToReturn     error
 	FolderInvocations []string
 	FileInvocations   []string
+}
+
+//RecordNotFoundError Error
+type RecordNotFoundError struct {
+	Path string
+}
+
+func (e *RecordNotFoundError) Error() string {
+	return fmt.Sprintf("Path " + e.Path + " was not found!")
 }
 
 func (mockDb *MockDatabaseClient) GetData(folder string, file string) (string, error) {

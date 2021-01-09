@@ -9,6 +9,13 @@ type PersistClient struct {
 	PersistUrlPrefix string
 }
 
+//GetData gets data at the path from persist. Returns RecordNotFoundError if no data is found.
 func (p PersistClient) GetData(folder string, file string) (string, error) {
-	return p.HttpClient.Get(p.PersistUrlPrefix + "/" + folder + "/" + file)
+	response, statusCode, err  :=  p.HttpClient.Get(p.PersistUrlPrefix + "/" + folder + "/" + file)
+	
+	if statusCode == 404 {
+		return "", &RecordNotFoundError{Path: folder + "/" + file} 
+	}
+
+	return response, err
 }

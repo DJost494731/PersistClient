@@ -34,6 +34,20 @@ func Test_PersistClientCallsHttpClientWithFormattedUrl(t *testing.T) {
 }
 
 
+
+func Test_PersistClientReturnsRecordNotFoundErrorWithHttp404(t *testing.T) {
+	mockHttpClient := &httpclient.MockHttpClient{StatusCode: 404}
+	persistClient := PersistClient{HttpClient: mockHttpClient, PersistUrlPrefix: ""}
+	
+	_, err := persistClient.GetData("stub folder", "stub file")
+	switch err.(type) {
+	case *RecordNotFoundError:
+	default:
+		t.Error("Expected Record not found error, got: ")
+		t.Error(err)
+	}
+}
+
 //contains returns true when the array 'a' contains the element 'e'
 func contains(a []string, e string) bool {
 	for _, a := range a {
